@@ -1,32 +1,16 @@
+//  --Importamos nuestro modulo en donde se encuentra nuestra app y sus rutas: ..
 
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
+import  app  from "./app.js";
 
+//  --Modulo con la configuracion de la variables de entorno ..
 
-// settings..
-app.set('port', process.env.PORT || 3000);
-app.set('json spaces', 2);
-
-
-// middlewares..
-app.use(morgan('dev'));
-app.use(express.urlencoded({extended:false}));
-app.use(express.json())
+import { PORT } from "./config.js";
 
 
 
-// routes..
-app.use(require('./routes/index'));
-app.use('/api/movies',require('./routes/movies'));
-app.use('/api/users', require('./routes/user'));
+//  --Establecemos el puerto donde estara escuchando la App.. 
 
+app.listen(PORT);
+console.log('Server running on port: '+PORT);
 
-
-
-// setting starting the server..
-app.listen(3000, () => {
-    console.log(`Server on port ${app.get('port')}`);
-
-});
-
+//  --Exportamos los modulos.. (Express) 
